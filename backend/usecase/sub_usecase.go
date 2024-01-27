@@ -25,7 +25,10 @@ func (tu *subUsecase) Create(c context.Context, sub *domain.Sub) error {
 	return tu.subRepository.Create(ctx, sub)
 }
 func (tu *subUsecase) Delete(c context.Context, subId int, userId int) error {
-	return nil
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+
+	return tu.subRepository.Delete(ctx, subId, userId)
 }
 func (tu *subUsecase) Update(c context.Context, subId int, userId int, sub *domain.Sub) error {
 	return nil

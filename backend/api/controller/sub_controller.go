@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	"ton-event-bot/domain"
@@ -27,8 +28,31 @@ func (tc *SubController) Create(c *gin.Context) {
 		"Status": "ok",
 	})
 }
-
 func (tc *SubController) Delete(c *gin.Context) {
+	id := c.Params.ByName("id")
+	subId, err := strconv.Atoi(id)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	var userIdstr domain.ChangePersonRequest
+	if err := c.BindJSON(&userIdstr); err != nil {
+		c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
+	fmt.Println(subId)
+	userId, err := strconv.Atoi(userIdstr.ChangePerson)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	if err := tc.SubUsecase.Delete(c, subId, userId); err != nil {
+		c.JSON(http.StatusBadGateway, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"Status": "ok",
 	})

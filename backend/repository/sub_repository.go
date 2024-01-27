@@ -35,6 +35,11 @@ func (tr *subRepository) Create(c context.Context, sub *domain.Sub) error {
 	return nil
 }
 func (tr *subRepository) Delete(c context.Context, subId int, userId int) error {
+	query := fmt.Sprintf("DELETE FROM %s WHERE channel_id=$1 AND user_id=$2", tr.SubTable)
+	_, err := tr.database.Exec(query, subId, userId)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 func (tr *subRepository) Update(c context.Context, subId int, userId int, sub *domain.Sub) error {
