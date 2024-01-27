@@ -17,7 +17,9 @@ export class EventsComponent {
   events = inject(EventsService);
 
   constructor(){
-    this.telegram.MainButton.hide();
+    this.telegram.MainButton.show();
     this.telegram.BackButton.hide();
+    this.telegram.MainButton.setText("Add Event");
+
   }
 }
