@@ -42,7 +42,9 @@ func (tr *subRepository) Update(c context.Context, subId int, userId int, sub *d
 }
 func (tr *subRepository) GetById(c context.Context, subId int) (domain.Sub, error) {
 	var data domain.Sub
-	return data, nil
+	query := fmt.Sprintf("SELECT * FROM %s WHERE channel_id=$1", tr.SubTable)
+	err := tr.database.QueryRow(query, subId).Scan(&data.ChannelId, &data.Name, &data.Price, &data.Description, &data.UserId, &data.Link, &data.Images, &data.Tags)
+	return data, err
 }
 func (tr *subRepository) GetAll(c context.Context) ([]domain.Sub, error) {
 	var data []domain.Sub

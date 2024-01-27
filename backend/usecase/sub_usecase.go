@@ -31,8 +31,10 @@ func (tu *subUsecase) Update(c context.Context, subId int, userId int, sub *doma
 	return nil
 }
 func (tu *subUsecase) GetById(c context.Context, subId int) (domain.Sub, error) {
-	var data domain.Sub
-	return data, nil
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+
+	return tu.subRepository.GetById(ctx, subId)
 }
 func (tu *subUsecase) GetAll(c context.Context) ([]domain.Sub, error) {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
