@@ -9,11 +9,12 @@ const (
 )
 
 type Sub struct {
-	ChannelId   string `json:"channel_id"`
+	ChannelId   int    `json:"channel_id"`
 	Name        string `json:"name"`
-	Price       string `jsom:"price"`
+	Price       int    `jsom:"price"`
 	Description string `json:"description"`
 	UserId      string `json:"user_id"`
+	Link        string `json:"link"`
 	Images      string `json:"images"`
 	Tags        string `json:"tags"`
 }

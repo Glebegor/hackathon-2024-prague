@@ -14,8 +14,6 @@ func NewPostgresConnection(env *Env) (*sqlx.DB, error) {
 		return db, err
 	}
 
-	defer db.Close()
-
 	if err := db.Ping(); err != nil {
 		return db, err
 	} else {
