@@ -36,14 +36,14 @@
 Type | JSON | Headers
 --- | --- | ---
 Request | --- | ---
-Response | [{ "id": "3124",  "name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png,3123-2.png",  "start-date": "28-01-2024 ","price": 20,}... ] | ---
+Response | [{ "id": "3124",  "name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-2.png",  "start-date": "28-01-2024 ","price": 20,}... ] | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/events/", method:POST.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "3124",  "name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png,3123-2.png",  "start-date": "28-01-2024", "price":20,} | ---
+Request | {"name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png",  "start-date": "28-01-2024", "price":20,} | ---
 Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -59,15 +59,15 @@ Error Response | { "message": "Some text" } | ---
 
 Type | JSON | Headers
 --- | --- | --- 
-Request | { ["3123-1.png", "3123-2.png", "3123-4.png"] } | --- 
-Response | --- | ---
+Request | --- | --- 
+Response | metadata of image | ---
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/events/:id", method:PUT.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id_of_person": "123042193012", data: {"name": "Hackathon Liquid", "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png,3123-2.png",  "start-date": "28-01-2024 ", "price": 20,}}  | ---
+Request | { "id_of_person": "123042193012", data: {"name": "Hackathon Liquid", "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png",  "start-date": "28-01-2024 ", "price": 20,}}  | ---
 Response | { "Status": "ok" } | ---
 Error Response | { "message": "Some text" } | --- 
 

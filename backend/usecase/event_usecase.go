@@ -1,4 +1,4 @@
-package repository
+package usecase 
 
 import (
       	"context"
@@ -10,7 +10,7 @@ type eventUsecase struct {
        	contextTimeout time.Duration
 }
 
-func NewEventRepository(eventRepository domain.EventRepository, timeout time.Duration) domain.EventUsecase {
+func NewEventUsecase(eventRepository domain.EventRepository, timeout time.Duration) domain.EventUsecase {
         return &eventUsecase{
 		eventRepository: eventRepository,
                 contextTimeout: timeout,
@@ -20,17 +20,17 @@ func NewEventRepository(eventRepository domain.EventRepository, timeout time.Dur
 func (tu *eventUsecase) Create(c context.Context, event *domain.Event) error {
         return nil
 }
-func (tu *eventUsecase) Delete(c context.Context) error {
+func (tu *eventUsecase) Delete(c context.Context, eventId int, userId int) error {
         return nil
 }
-func (tu *eventUsecase) Update(c *gin.Context, eventId string) error {
+func (tu *eventUsecase) Update(c context.Context, eventId int, userId int, event *domain.Event) error {
         return nil
 }
-func (tu *eventUsecase) GetById(c *gin.Context, eventId string) (domain.Event) {
+func (tu *eventUsecase) GetById(c context.Context, eventId int) (domain.Event, error) {
         var data domain.Event
         return data, nil
 }
-func (tu *eventUsecase) GetAll(c *gin.Context) ([]domain.Event, error){
+func (tu *eventUsecase) GetAll(c context.Context) ([]domain.Event, error){
 	var data []domain.Event
         return data, nil
 }

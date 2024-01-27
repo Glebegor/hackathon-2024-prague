@@ -16,7 +16,7 @@ import (
 func NewEventsRouter(env *bootstrap.Env, timeout time.Duration, db *sqlx.DB, group *gin.RouterGroup) {
 	tr := repository.NewEventRepository(db, domain.CollectionEvent)
 	tc := &controller.EventController{
-		TaskUsecase: usecase.NewEventUsecase(tr, timeout),
+		EventUsecase: usecase.NewEventUsecase(tr, timeout),
 	}
 	group.GET("/event", tc.GetAll)
 	group.GET("/event/:id", tc.GetById)
