@@ -13,19 +13,30 @@ type SubController struct {
 }
 
 func (tc *SubController) Create(c *gin.Context) {
+	var input domain.Sub
+	if err := c.BindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
+	if err := tc.SubUsecase.Create(c, &input); err != nil {
+		c.JSON(http.StatusBadGateway, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
+
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"status": "Ok",
+		"Status": "ok",
 	})
 }
+
 func (tc *SubController) Delete(c *gin.Context) {
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"status": "Ok",
+		"Status": "ok",
 	})
 
 }
 func (tc *SubController) Update(c *gin.Context) {
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"status": "Ok",
+		"Status": "ok",
 	})
 }
 func (tc *SubController) GetById(c *gin.Context) {
