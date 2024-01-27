@@ -21,5 +21,5 @@ func main() {
 	timeout := 10*time.Second
 
 	route.Setup(env, timeout, db, gin)
-	gin.Run(env.SERVERport)
+	gin.Run(":" + env.SERVERport)
 }
