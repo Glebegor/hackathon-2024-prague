@@ -1,2 +1,2 @@
 rundb:
-	sudo docker run --name=tonsub-db -e POSTGRES_PASSWORD="123321" -p 5436:5432 --rm -d postgres
+	sudo docker run --name=ton-event-db -e POSTGRES_PASSWORD="123321" -p 5555:5432 --rm -d postgres
