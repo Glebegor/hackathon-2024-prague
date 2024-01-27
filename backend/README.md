@@ -36,14 +36,14 @@
 Type | JSON | Headers
 --- | --- | ---
 Request | --- | ---
-Response | [{ "id": "3124",  "name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png,3123-2.png",  "start-date": "28-01-2024 ",  "end-date": "30-01-2024 ",  "start-time": "9:30",}... ] | ---
+Response | [{ "id": "3124",  "name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png,3123-2.png",  "start-date": "28-01-2024 ","price": 20,}... ] | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/events/", method:POST.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "3124",  "name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png,3123-2.png",  "start-date": "28-01-2024 ",  "end-date": "30-01-2024 ",  "start-time": "9:30",} | ---
+Request | { "id": "3124",  "name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png,3123-2.png",  "start-date": "28-01-2024", "price":20,} | ---
 Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -67,8 +67,8 @@ Error Response | { "message": "Some text" } | ---
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id_of_person": "123042193012", data: {"name": "Hackathon Liquid", "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png,3123-2.png",  "start-date": "28-01-2024 ",  "end-date": "30-01-2024 ",  "start-time": "9:30",}}  | ---
-Response | { "Status": "ok" } | --- 
+Request | { "id_of_person": "123042193012", data: {"name": "Hackathon Liquid", "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png,3123-2.png",  "start-date": "28-01-2024 ", "price": 20,}}  | ---
+Response | { "Status": "ok" } | ---
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/events/:id", method:DELETE.</h4>
@@ -85,25 +85,15 @@ Type | JSON | Headers
 --- | --- | --- 
 Request | {"id_of_person": "123042193012"} | ---
 Response | { "Status": "ok" } | --- 
-Error Response | { "message": "Some text" } | --- 
-
-<h3>contact</h3>
-<hr>
-<h4>"/api/v1/contact/", method:POST.</h4>
-
-Type | JSON | Headers
---- | --- | ---
-Request | --- | --- 
-Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | ---
 
 
 ## Models
 ### Events
 
-id   | name | id_of_person | tags | description | images | start-date | end-date | start-time
---- | --- | --- | --- | --- | --- | --- | --- | --- 
-3123 | Hackathon Liquid | 123042193012 | crypto,cybersecurity | some information | 3123-1.png,3123-2.png | 28-01-2024 | 30-01-2024 | 9:30
+id   | name | id_of_person | tags | description | images | start-date | price
+--- | --- | --- | --- | --- | --- | --- | ---
+3123 | Hackathon Liquid | 123042193012 | crypto,cybersecurity | some information | 3123-1.png,3123-2.png | 28-01-2024 | 20
 
 ## Configs
 ### .env
