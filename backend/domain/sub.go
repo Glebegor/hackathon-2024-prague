@@ -9,14 +9,14 @@ const (
 )
 
 type Sub struct {
-	ChannelId   int    `json:"channel_id"`
-	Name        string `json:"name"`
-	Price       int    `jsom:"price"`
-	Description string `json:"description"`
-	UserId      string `json:"user_id"`
-	Link        string `json:"link"`
-	Images      string `json:"images"`
-	Tags        string `json:"tags"`
+	ChannelId   int    `json:"channel_id", db:"channel_id"`
+	Name        string `json:"name", db:"name"`
+	Price       int    `jsom:"price", db:"price"`
+	Description string `json:"description", db:"description"`
+	UserId      string `json:"user_id", db:"user_id"`
+	Link        string `json:"link", db:"link"`
+	Images      string `json:"images", db:"images"`
+	Tags        string `json:"tags", db:"tags"`
 }
 
 type SubRepository interface {

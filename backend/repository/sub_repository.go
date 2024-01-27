@@ -47,5 +47,20 @@ func (tr *subRepository) GetById(c context.Context, subId int) (domain.Sub, erro
 func (tr *subRepository) GetAll(c context.Context) ([]domain.Sub, error) {
 	var data []domain.Sub
 
+	query := fmt.Sprintf("SELECT * from %s", tr.SubTable)
+	rows, err := tr.database.Query(query)
+	if err != nil {
+		return data, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var dataEl domain.Sub
+		err := rows.Scan(&dataEl.ChannelId, &dataEl.Name, &dataEl.Price, &dataEl.Description, &dataEl.UserId, &dataEl.Link, &dataEl.Images, &dataEl.Tags)
+		if err != nil {
+			return data, err
+		}
+		data = append(data, dataEl)
+	}
 	return data, nil
 }
