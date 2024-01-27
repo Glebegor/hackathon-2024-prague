@@ -6,34 +6,34 @@ import (
 	"ton-event-bot/domain"
 )
 
-type eventUsecase struct {
-	eventRepository domain.EventRepository
-	contextTimeout  time.Duration
+type subUsecase struct {
+	subRepository  domain.SubRepository
+	contextTimeout time.Duration
 }
 
-func NewEventUsecase(eventRepository domain.EventRepository, timeout time.Duration) domain.EventUsecase {
-	return &eventUsecase{
-		eventRepository: eventRepository,
-		contextTimeout:  timeout,
+func NewSubUsecase(subRepository domain.SubRepository, timeout time.Duration) domain.SubUsecase {
+	return &subUsecase{
+		subRepository:  subRepository,
+		contextTimeout: timeout,
 	}
 }
 
-func (tu *eventUsecase) Create(c context.Context, event *domain.Event) error {
+func (tu *subUsecase) Create(c context.Context, sub *domain.Sub) error {
 	return nil
 }
-func (tu *eventUsecase) Delete(c context.Context, eventId int, userId int) error {
+func (tu *subUsecase) Delete(c context.Context, subId int, userId int) error {
 	return nil
 }
-func (tu *eventUsecase) Update(c context.Context, eventId int, userId int, event *domain.Event) error {
+func (tu *subUsecase) Update(c context.Context, subId int, userId int, sub *domain.Sub) error {
 	return nil
 }
-func (tu *eventUsecase) GetById(c context.Context, eventId int) (domain.Event, error) {
-	var data domain.Event
+func (tu *subUsecase) GetById(c context.Context, subId int) (domain.Sub, error) {
+	var data domain.Sub
 	return data, nil
 }
-func (tu *eventUsecase) GetAll(c context.Context) ([]domain.Event, error) {
+func (tu *subUsecase) GetAll(c context.Context) ([]domain.Sub, error) {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 
-	return tu.eventRepository.GetAll(ctx)
+	return tu.subRepository.GetAll(ctx)
 }

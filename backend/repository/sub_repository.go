@@ -2,41 +2,40 @@ package repository
 
 import (
 	"context"
-	
-	_ "github.com/lib/pq"
+
 	"ton-event-bot/domain"
+
 	"github.com/jmoiron/sqlx"
-	
+	_ "github.com/lib/pq"
 )
 
-type eventRepository struct {
-	database *sqlx.DB
+type subRepository struct {
+	database   *sqlx.DB
 	collection string
 }
 
-func NewEventRepository(db *sqlx.DB, collection string) domain.EventRepository {
-	return &eventRepository{
-		database: db,
+func NewSubRepository(db *sqlx.DB, collection string) domain.SubRepository {
+	return &subRepository{
+		database:   db,
 		collection: collection,
 	}
 }
 
-func (tr *eventRepository) Create(c context.Context, event *domain.Event) error {
-	
+func (tr *subRepository) Create(c context.Context, sub *domain.Sub) error {
 	return nil
 }
-func (tr *eventRepository) Delete(c context.Context, eventId int, userId int) error {
+func (tr *subRepository) Delete(c context.Context, subId int, userId int) error {
 	return nil
 }
-func (tr *eventRepository) Update(c context.Context, eventId int, userId int, event *domain.Event) error {
+func (tr *subRepository) Update(c context.Context, subId int, userId int, sub *domain.Sub) error {
 	return nil
 }
-func (tr *eventRepository) GetById(c context.Context, eventId int) (domain.Event, error) {
-	var data domain.Event
-	return data, nil 
+func (tr *subRepository) GetById(c context.Context, subId int) (domain.Sub, error) {
+	var data domain.Sub
+	return data, nil
 }
-func (tr *eventRepository) GetAll(c context.Context) ([]domain.Event, error){
-	var data []domain.Event
-	
+func (tr *subRepository) GetAll(c context.Context) ([]domain.Sub, error) {
+	var data []domain.Sub
+
 	return data, nil
 }

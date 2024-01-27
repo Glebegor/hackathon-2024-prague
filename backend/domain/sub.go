@@ -5,31 +5,31 @@ import (
 )
 
 const (
-	CollectionEvent = "events"
+	CollectionSub = "subs"
 )
 
-type Event struct {
-	Id           int    `json:"id"`
-	Name         string `json:"name"`
-	IdOfPerson string `jsom:"id_of_person"`
-	tags         string `json:"tags"`
-	Description  string `json:"description"`
-	Images       string `json:"images"`
-	StartDate   string `json:"start-date"`
+type Sub struct {
+	ChannelId   string `json:"channel_id"`
+	Name        string `json:"name"`
+	Price       string `jsom:"price"`
+	Description string `json:"description"`
+	UserId      string `json:"user_id"`
+	Images      string `json:"images"`
+	Tags        string `json:"tags"`
 }
 
-type EventRepository interface {
-	Create (c context.Context, event *Event) error
-	GetById (c context.Context, eventId int) (Event, error)
-	GetAll (c context.Context) ([]Event, error)
-	Update (c context.Context, eventId int, userId int, event *Event) error
-	Delete (c context.Context, eventId int, userId int) error
+type SubRepository interface {
+	Create(c context.Context, sub *Sub) error
+	GetById(c context.Context, subId int) (Sub, error)
+	GetAll(c context.Context) ([]Sub, error)
+	Update(c context.Context, subId int, userId int, sub *Sub) error
+	Delete(c context.Context, subId int, userId int) error
 }
 
-type EventUsecase interface {
-	Create (c context.Context, event *Event) error
-       	GetById (c context.Context, eventId int) (Event, error)
-       	GetAll (c context.Context) ([]Event, error)
-       	Update (c context.Context, eventId int, userId int, event *Event) error
-       	Delete (c context.Context, eventId int, userId int) error
+type SubUsecase interface {
+	Create(c context.Context, sub *Sub) error
+	GetById(c context.Context, subId int) (Sub, error)
+	GetAll(c context.Context) ([]Sub, error)
+	Update(c context.Context, subId int, userId int, sub *Sub) error
+	Delete(c context.Context, subId int, userId int) error
 }
