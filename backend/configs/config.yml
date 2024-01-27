@@ -1,7 +1,7 @@
 Enviroment: "dev"
 
 server:
-  Port: "8080"
+  Port: "7979"
 
 db:
   Port: "5555"

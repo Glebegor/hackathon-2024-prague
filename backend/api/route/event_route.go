@@ -9,7 +9,7 @@ import (
 
 )
 
-func NewEventsRoute(env *bootstrap.Env, timeout time.Duration, db *sqlx.DB, group *gin.RouterGroup) {
+func NewEventsRouter(env *bootstrap.Env, timeout time.Duration, db *sqlx.DB, group *gin.RouterGroup) {
 	group.GET("/")
 }
 

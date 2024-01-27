@@ -7,6 +7,7 @@ import (
 )
 
 type Env struct {
+	EnvType    string
 	SERVERport string
 	DBusername string 
 	DBname     string 
@@ -14,6 +15,7 @@ type Env struct {
 	DBhost     string
 	DBport     string
 	DBpassword string
+	SECRET_KEY string
 }
 
 func NewEnv() (*Env, error) {
@@ -29,6 +31,7 @@ func NewEnv() (*Env, error) {
 		return &env, err
 	}
 
+	env.EnvType = viper.GetString("Enviroment")
 	env.DBusername = viper.GetString("db.Username")
 	env.DBname = viper.GetString("db.Name")
 	env.DBmode = viper.GetString("db.Mode")
@@ -36,6 +39,7 @@ func NewEnv() (*Env, error) {
 	env.DBport = viper.GetString("db.Port")
 	
 	env.DBpassword = os.Getenv("DB_PASSWORD")
+	env.SECRET_KEY = os.Getenv("SECRET_KEY")  
 	env.SERVERport = viper.GetString("server.Port")
 	return &env, nil
 }

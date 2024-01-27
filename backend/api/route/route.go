@@ -2,7 +2,6 @@ package route
 
 import (
 	"time"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jmoiron/sqlx"
@@ -10,6 +9,9 @@ import (
 )
 
 func Setup(env *bootstrap.Env, timeout time.Duration, db *sqlx.DB, gin *gin.Engine) {
-	// publicRouter := gin.Group("")		
-	fmt.Print("Something")
+	publicRouter := gin.Group("api/v1/")		
+ 	NewEventsRouter(env, timeout, db, publicRouter)
+	
+	// protectRouter := gin.Group("api/v2/")
+	// protectRouter.Use(middleware.Auth(env.SECRET_KEY))
 }
