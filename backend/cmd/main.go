@@ -12,5 +12,14 @@ import (
 
 
 func main() {
+	app := bootstrap.App()
+	env := app.Env
+	db := app.Postgres
 	
+	gin := gin.Default()
+	
+	timeout := 10*time.Second
+
+	route.Setup(env, timeout, db, gin)
+	gin.Run(env.SERVERport)
 }

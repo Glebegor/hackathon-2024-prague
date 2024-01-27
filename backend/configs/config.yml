@@ -1,0 +1,12 @@
+Enviroment: "dev"
+
+server:
+  Port: "8080"
+
+db:
+  Port: "5555"
+  Name: "postgres"
+  Username: "postgres"
+  Mode: "disable"
+  Host: "localhost"
+    
