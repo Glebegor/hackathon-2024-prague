@@ -1,6 +1,7 @@
 package controller
 
 import(
+	"strconv"
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"ton-event-bot/domain"
@@ -29,14 +30,16 @@ func (tc *EventController) Update(c *gin.Context) {
 }
 func (tc *EventController) GetById(c *gin.Context) {
 	var data domain.Event
-        
+	id := c.Params.ByName("id")
+	eventId, err := strconv.Atoi(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
 
-	data, err := tc.EventUsecase.GetById(c)
+	data, err = tc.EventUsecase.GetById(c, eventId)
         if err != nil {
-                c.JSON(http.StatusInternalServerError, map[string]interface{}{
-                        "message": "Error: Cant get event.",
-                })
-                fmt.Print(err.Error())
+                c.JSON(http.StatusInternalServerError, domain.ErrorResponse{Message: err.Error()})
                 return
         }
         c.JSON(http.StatusOK, data)
@@ -45,10 +48,7 @@ func (tc *EventController) GetAll(c *gin.Context) {
 	var data []domain.Event
 	data, err := tc.EventUsecase.GetAll(c)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, map[string]interface{}{
-			"message": "Error: Cant get all events.", 
-		})
-		fmt.Print(err.Error())
+		c.JSON(http.StatusInternalServerError, domain.ErrorResponse{Message: err.Error()})
 		return
 	}
 	c.JSON(http.StatusOK, data)
