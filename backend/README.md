@@ -1,115 +1,107 @@
+---
+runme:
+  id: 01HN6B1KH0KW12R2NKAGHJ4AME
+  version: v2.2
+---
+
 # Hackathon-app
+
 ## API
 
 ### API lookups
-2. "/api/v2":
-      - "/events":
-          - "/"              POST  
-          - "/"              GET 
-          - "/:id"           GET 
-          - "/:id/image"     GET
-          - "/:id"           PATCH   
-          - "/:id"           DELETE 
-          - "/:id/buyticket" POST
 
-      - "/contact"
-          - "/:id"           POST 
-<br>
-"/api/v2":<br>
-<br>
-"/api/v2/events":<br>
-"/api/v2/events/"              POST<br>
-"/api/v2/events/"              GET<br>
-"/api/v2/events/:id"           GET<br>
-"/api/v2/events/:id/image"     GET<br>
-"/api/v2/events/:id"           PATCH<br>
-"/api/v2/events/:id"           DELETE<br>
-"/api/v2/events/:id/buyticket" POST<br>
-<br>
-"/api/v2/contact/:id"          POST<br>
+#### List lookup
+"/api/v2":
+   - "/sub":
+      - "/"              POST
+      - "/"              GET
+      - "/:id"           GET
+      - "/:id/image"     GET
+      - "/:id"           PATCH
+      - "/:id"           DELETE
+      - "/:id/buyticket" POST
+
+#### Point lookup
+
+"/api/v2/sub/"              POST<br>
+"/api/v2/sub/"              GET<br>
+"/api/v2/sub/:id"           GET<br>
+"/api/v2/sub/:id"           Delete<br>
+"/api/v2/sub/:id"           PATCH<br>
 
 <br>
-<h3>events</h3>
+<h3>Subscription</h3>
 <hr>
-<h4>"/api/v1/events/", method:GET.</h4>
+<h4>"/api/v1/sub/", method:GET.</h4>
 
 Type | JSON | Headers
 --- | --- | ---
 Request | --- | ---
-Response | [{ "id": "3124",  "name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-2.png",  "start-date": "28-01-2024 ","price": 20,}... ] | ---
+Response | [{ "channel_id":"123", "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"}... ] | ---
 Error Response | { "message": "Some text" } | ---
 
-<h4>"/api/v1/events/", method:POST.</h4>
-
-Type | JSON | Headers 
---- | --- | --- 
-Request | {"name": "Hackathon Liquid",  "id_of_person": "123042193012",  "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png",  "start-date": "28-01-2024", "price":20,} | ---
-Response | { "Status": "ok" } | --- 
-Error Response | { "message": "Some text" } | --- 
-
-<h4>"/api/v1/events/:id", method:GET.</h4>
+<h4>"/api/v1/sub/", method:POST.</h4>
 
 Type | JSON | Headers
---- | --- | --- 
-Request | --- | --- 
-Response | Meta data | ---
-Error Response | { "message": "Some text" } | --- 
-
-<h4>"/api/v1/events/:id/image"", method:GET.</h4>
-
-Type | JSON | Headers
---- | --- | --- 
-Request | --- | --- 
-Response | metadata of image | ---
-Error Response | { "message": "Some text" } | --- 
-
-<h4>"/api/v1/events/:id", method:PUT.</h4>
-
-Type | JSON | Headers 
---- | --- | --- 
-Request | { "id_of_person": "123042193012", data: {"name": "Hackathon Liquid", "tags": "crypto,cybersecurity",  "description": "some information",  "images": "3123-1.png",  "start-date": "28-01-2024 ", "price": 20,}}  | ---
+--- | --- | ---
+Request | {"channel_id":"123", "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"} | ---
 Response | { "Status": "ok" } | ---
-Error Response | { "message": "Some text" } | --- 
-
-<h4>"/api/v1/events/:id", method:DELETE.</h4>
-
-Type | JSON | Headers 
---- | --- | --- 
-Request | {"id_of_person": "123042193012"} | ---
-Response | { "Status": "ok" } | --- 
-Error Response | { "message": "Some text" } | --- 
-
-<h4>"/api/v1/events/:id/buyticket", method:POST.</h4>
-
-Type | JSON | Headers 
---- | --- | --- 
-Request | {"id_of_person": "123042193012"} | ---
-Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | ---
 
+<h4>"/api/v1/sub/:id", method:GET.</h4>
+
+Type | JSON | Headers
+--- | --- | ---
+Request | --- | ---
+Response | {"channel_id":123, "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"} | ---
+Error Response | { "message": "Some text" } | ---
+
+<h4>"/api/v1/sub/:id", method:PUT.</h4>
+
+Type | JSON | Headers
+--- | --- | ---
+Request | { "change_person": "1230412", data: {"name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"}}  | ---
+Response | { "Status": "ok" } | ---
+Error Response | { "message": "Some text" } | ---
+
+<h4>"/api/v1/sub/:id", method:DELETE.</h4>
+
+Type | JSON | Headers
+--- | --- | ---
+Request | {"change_person": "123042193012"} | ---
+Response | { "Status": "ok" } | ---
+Error Response | { "message": "Some text" } | ---
 
 ## Models
-### Events
 
-id   | name | id_of_person | tags | description | images | start-date | price
---- | --- | --- | --- | --- | --- | --- | ---
-3123 | Hackathon Liquid | 123042193012 | crypto,cybersecurity | some information | 3123-1.png,3123-2.png | 28-01-2024 | 20
+### Subscriptions
+
+channel_id | name | price | description | user_id | link | images | tags
+--- | --- | --- | --- | --- | --- | --- | --
+1233123 | TonAppchannel | 20 | Something | 12309812948 | t.me/qwed | 3123-2.png | crypto,pirat
 
 ## Configs
+
 ### .env
+
 '''
 DB_PASSWORD="password"
+SECRET_KEY="secret_key"
 '''
 
 ### config.yml
+
 '''
-SERVER:
-	Port: port
-	
-DB:
-	Host: host
-	Port: port
-	Username: admin
-	SSLmode: disable
+Enviroment: "dev"
+
+server:
+Port: port
+
+db:
+Host: host
+Port: port
+Name: name
+Username: admin
+SSLmode: disable
 '''
 

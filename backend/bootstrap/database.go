@@ -7,9 +7,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-
-
-func NewPostgresConnection(env *Env) (*sqlx.DB, error){
+func NewPostgresConnection(env *Env) (*sqlx.DB, error) {
 	var db *sqlx.DB
 	db, err := sqlx.Connect("postgres", fmt.Sprintf("user=%s dbname=%s sslmode=%s password=%s host=%s port=%s", env.DBusername, env.DBname, env.DBmode, env.DBpassword, env.DBhost, env.DBport))
 	if err != nil {
@@ -24,4 +22,3 @@ func NewPostgresConnection(env *Env) (*sqlx.DB, error){
 		return db, nil
 	}
 }
-

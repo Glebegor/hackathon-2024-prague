@@ -2,9 +2,11 @@ package repository
 
 import (
 	"context"
-
+	
+	_ "github.com/lib/pq"
 	"ton-event-bot/domain"
 	"github.com/jmoiron/sqlx"
+	
 )
 
 type eventRepository struct {
@@ -20,6 +22,7 @@ func NewEventRepository(db *sqlx.DB, collection string) domain.EventRepository {
 }
 
 func (tr *eventRepository) Create(c context.Context, event *domain.Event) error {
+	
 	return nil
 }
 func (tr *eventRepository) Delete(c context.Context, eventId int, userId int) error {
@@ -34,5 +37,6 @@ func (tr *eventRepository) GetById(c context.Context, eventId int) (domain.Event
 }
 func (tr *eventRepository) GetAll(c context.Context) ([]domain.Event, error){
 	var data []domain.Event
+	
 	return data, nil
 }
