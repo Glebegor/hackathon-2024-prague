@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	"ton-event-bot/domain"
 
@@ -42,8 +43,40 @@ func (tr *subRepository) Delete(c context.Context, subId int, userId int) error 
 	}
 	return nil
 }
-func (tr *subRepository) Update(c context.Context, subId int, userId int, sub *domain.Sub) error {
-	return nil
+func (tr *subRepository) Update(c context.Context, subId int, sub *domain.UpdateSub) error {
+	setValues := make([]string, 0)
+	args := make([]interface{}, 0)
+	argId := 1
+	if sub.Name != "" {
+		setValues = append(setValues, fmt.Sprintf("name='%v'", sub.Name))
+		args = append(args, fmt.Sprintf("$%d", argId))
+		argId++
+	}
+	if sub.Price > 0 {
+		setValues = append(setValues, fmt.Sprintf("price=%v", sub.Price))
+		args = append(args, fmt.Sprintf("$%d", argId))
+		argId++
+	}
+	if sub.Description != "" {
+		setValues = append(setValues, fmt.Sprintf("description='%v'", sub.Description))
+		args = append(args, fmt.Sprintf("$%d", argId))
+		argId++
+	}
+	if sub.Images != "" {
+		setValues = append(setValues, fmt.Sprintf("images='%v'", sub.Images))
+		args = append(args, fmt.Sprintf("$%d", argId))
+		argId++
+	}
+	if sub.Tags != "" {
+		setValues = append(setValues, fmt.Sprintf("tags='%v'", sub.Tags))
+		args = append(args, fmt.Sprintf("$%d", argId))
+		argId++
+	}
+	setQuery := strings.Join(setValues, ", ")
+	query := fmt.Sprintf("UPDATE %s SET %s WHERE channel_id=%d", tr.SubTable, setQuery, subId)
+	fmt.Print(query)
+	_, err := tr.database.Exec(query)
+	return err
 }
 func (tr *subRepository) GetById(c context.Context, subId int) (domain.Sub, error) {
 	var data domain.Sub

@@ -59,6 +59,23 @@ func (tc *SubController) Delete(c *gin.Context) {
 
 }
 func (tc *SubController) Update(c *gin.Context) {
+	id := c.Params.ByName("id")
+	subId, err := strconv.Atoi(id)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	var input domain.UpdateSub
+	if err := c.BindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
+	if err := tc.SubUsecase.Update(c, subId, &input); err != nil {
+		c.JSON(http.StatusBadGateway, domain.ErrorResponse{Message: err.Error()})
+		return
+	}
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"Status": "ok",
 	})

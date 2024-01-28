@@ -6,7 +6,8 @@ CREATE TABLE sub (
 	user_id INT NOT NULL,
 	link VARCHAR(255),
 	images VARCHAR(255),
-	tags VARCHAR(255)
+	tags VARCHAR(255),
+	wallet VARCHAR(1000)
 );
 
 CREATE TABLE sub_users (

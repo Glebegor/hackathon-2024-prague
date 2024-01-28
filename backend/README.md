@@ -11,23 +11,25 @@ runme:
 ### API lookups
 
 #### List lookup
+
 "/api/v2":
-   - "/sub":
-      - "/"              POST
-      - "/"              GET
-      - "/:id"           GET
-      - "/:id/image"     GET
-      - "/:id"           PATCH
-      - "/:id"           DELETE
-      - "/:id/buyticket" POST
+
+- "/sub":
+   - "/"              POST
+   - "/"              GET
+   - "/:id"           GET
+   - "/:id/image"     GET
+   - "/:id"           PATCH
+   - "/:id"           DELETE
+   - "/:id/buyticket" POST
 
 #### Point lookup
 
-"/api/v2/sub/"              POST<br>
-"/api/v2/sub/"              GET<br>
-"/api/v2/sub/:id"           GET<br>
-"/api/v2/sub/:id"           Delete<br>
-"/api/v2/sub/:id"           PATCH<br>
+"/api/v2/sub/"              POST
+"/api/v2/sub/"              GET
+"/api/v2/sub/:id"           GET
+"/api/v2/sub/:id"           Delete
+"/api/v2/sub/:id"           PATCH
 
 <br>
 <h3>Subscription</h3>
@@ -37,14 +39,14 @@ runme:
 Type | JSON | Headers
 --- | --- | ---
 Request | --- | ---
-Response | [{ "channel_id":"123", "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"}... ] | ---
+Response | [{ "channel_id":123, "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"}... ] | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/sub/", method:POST.</h4>
 
 Type | JSON | Headers
 --- | --- | ---
-Request | {"channel_id":"123", "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"} | ---
+Request | {"channel_id":123, "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"} | ---
 Response | { "Status": "ok" } | ---
 Error Response | { "message": "Some text" } | ---
 
@@ -60,7 +62,7 @@ Error Response | { "message": "Some text" } | ---
 
 Type | JSON | Headers
 --- | --- | ---
-Request | { "change_person": "1230412", data: {"name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"}}  | ---
+Request | { "change_person": "1230412", "name":"Name", "price": 20, "description": "some text", "images":"img.png", "tags": "crypto,res"}  | ---
 Response | { "Status": "ok" } | ---
 Error Response | { "message": "Some text" } | ---
 
