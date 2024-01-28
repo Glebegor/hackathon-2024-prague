@@ -17,6 +17,7 @@ type Sub struct {
 	Link        string `json:"link" db:"link"`
 	Images      string `json:"images" db:"images"`
 	Tags        string `json:"tags" db:"tags"`
+	Wallet      string `json:"wallet" db:"wallet"`
 }
 
 type SubRepository interface {

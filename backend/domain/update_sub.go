@@ -7,4 +7,5 @@ type UpdateSub struct {
 	Description  string `json:"description"`
 	Images       string `json:"images"`
 	Tags         string `json:"tags"`
+	Wallet       string `json:"wallet"`
 }

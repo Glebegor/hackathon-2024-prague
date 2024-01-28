@@ -4,7 +4,7 @@ server:
   Port: "7979"
 
 db:
-  Port: "5555"
+  Port: "5556"
   Name: "postgres"
   Username: "postgres"
   Mode: "disable"

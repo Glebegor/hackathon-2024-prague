@@ -39,14 +39,14 @@ runme:
 Type | JSON | Headers
 --- | --- | ---
 Request | --- | ---
-Response | [{ "channel_id":123, "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"}... ] | ---
+Response | [{ "channel_id":123, "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res", wallet: "12ed1o@31pjo"}... ] | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/sub/", method:POST.</h4>
 
 Type | JSON | Headers
 --- | --- | ---
-Request | {"channel_id":123, "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"} | ---
+Request | {"channel_id":123, "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res", wallet: "12ed1o@31pjo"} | ---
 Response | { "Status": "ok" } | ---
 Error Response | { "message": "Some text" } | ---
 
@@ -55,14 +55,14 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers
 --- | --- | ---
 Request | --- | ---
-Response | {"channel_id":123, "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res"} | ---
+Response | {"channel_id":123, "name":"Name", "price": 20, "description": "some text", "user_id":"1230412", "link":"t.me/213dqw", "images":"img.png", "tags": "crypto,res", wallet: "12ed1o@31pjo"} | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/sub/:id", method:PUT.</h4>
 
 Type | JSON | Headers
 --- | --- | ---
-Request | { "change_person": "1230412", "name":"Name", "price": 20, "description": "some text", "images":"img.png", "tags": "crypto,res"}  | ---
+Request | { "change_person": "1230412", "name":"Name", "price": 20, "description": "some text", "images":"img.png", "tags": "crypto,res", wallet: "12ed1o@31pjo"}  | ---
 Response | { "Status": "ok" } | ---
 Error Response | { "message": "Some text" } | ---
 
@@ -78,9 +78,9 @@ Error Response | { "message": "Some text" } | ---
 
 ### Subscriptions
 
-channel_id | name | price | description | user_id | link | images | tags
---- | --- | --- | --- | --- | --- | --- | --
-1233123 | TonAppchannel | 20 | Something | 12309812948 | t.me/qwed | 3123-2.png | crypto,pirat
+channel_id | name | price | description | user_id | link | images | tags | wallet
+--- | --- | --- | --- | --- | --- | --- | --- | ---
+1233123 | TonAppchannel | 20 | Something | 12309812948 | t.me/qwed | 3123-2.png | crypto,pirat | ewrkljlk!@#k
 
 ## Configs
 

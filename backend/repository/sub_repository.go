@@ -28,8 +28,8 @@ func NewSubRepository(db *sqlx.DB, collection string) domain.SubRepository {
 }
 
 func (tr *subRepository) Create(c context.Context, sub *domain.Sub) error {
-	query := fmt.Sprintf("INSERT INTO %s (channel_id, price, name, description, user_id, link, images, tags) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)", tr.SubTable)
-	_, err := tr.database.Exec(query, sub.ChannelId, sub.Price, sub.Name, sub.Description, sub.UserId, sub.Link, sub.Images, sub.Tags)
+	query := fmt.Sprintf("INSERT INTO %s (channel_id, price, name, description, user_id, link, images, tags, wallet) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)", tr.SubTable)
+	_, err := tr.database.Exec(query, sub.ChannelId, sub.Price, sub.Name, sub.Description, sub.UserId, sub.Link, sub.Images, sub.Tags, sub.Wallet)
 	if err != nil {
 		return err
 	}
@@ -69,6 +69,11 @@ func (tr *subRepository) Update(c context.Context, subId int, sub *domain.Update
 	}
 	if sub.Tags != "" {
 		setValues = append(setValues, fmt.Sprintf("tags='%v'", sub.Tags))
+		args = append(args, fmt.Sprintf("$%d", argId))
+		argId++
+	}
+	if sub.Wallet != "" {
+		setValues = append(setValues, fmt.Sprintf("wallet='%v'", sub.Wallet))
 		args = append(args, fmt.Sprintf("$%d", argId))
 		argId++
 	}
