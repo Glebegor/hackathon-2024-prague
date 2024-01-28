@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { group } from '@angular/animations';
 
-export enum IEventsGroup {
-  events = "events",
-}
-export interface IEvent {
+export interface ISubscribtion {
   id: number;
   name: string;
   idOfPerson: string;
@@ -12,11 +9,9 @@ export interface IEvent {
   description: string;
   image: string;
   tags:string;
-  startDate: string;
-  category: IEventsGroup;
   link:string;
 }
-const events: IEvent[] = [
+const subscribtions: ISubscribtion[] = [
   {
     id: 1,
     name: "falafel",
@@ -24,10 +19,8 @@ const events: IEvent[] = [
     price:69,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: IEventsGroup.events,
     image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
     tags:"#bom",
-    startDate:"1.1.2022",
     link:"http://google.com"
   },
   {
@@ -37,10 +30,8 @@ const events: IEvent[] = [
     price:69,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: IEventsGroup.events,
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     tags:"#bom",
-    startDate:"1.1.2022",
     link:"http://google.com"
   },
   {
@@ -50,10 +41,8 @@ const events: IEvent[] = [
     price:69,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: IEventsGroup.events,
     image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
     tags:"#bom",
-    startDate:"1.1.2022",
     link:"http://google.com"
   },
   {
@@ -63,10 +52,8 @@ const events: IEvent[] = [
     price:69,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: IEventsGroup.events,
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     tags:"#bom",
-    startDate:"1.1.2022",
     link:"http://google.com"
   },
   {
@@ -76,10 +63,8 @@ const events: IEvent[] = [
     price:69,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: IEventsGroup.events,
     image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
     tags:"#bom",
-    startDate:"1.1.2022",
     link:"http://google.com"
   },
   {
@@ -89,10 +74,8 @@ const events: IEvent[] = [
     price:69,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: IEventsGroup.events,
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     tags:"#bom",
-    startDate:"1.1.2022",
     link:"http://google.com"
   },
   {
@@ -102,10 +85,8 @@ const events: IEvent[] = [
     price:69,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: IEventsGroup.events,
     image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
     tags:"#bom",
-    startDate:"1.1.2022",
     link:"http://google.com"
   },
   {
@@ -115,10 +96,8 @@ const events: IEvent[] = [
     price:69,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: IEventsGroup.events,
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     tags:"#bom",
-    startDate:"1.1.2022",
     link:"http://google.com"
   },
 ];
@@ -128,21 +107,25 @@ const events: IEvent[] = [
   providedIn: 'root'
 })
 export class EventsService {
-  readonly events: IEvent[] = events;
+  readonly subscribtions: ISubscribtion [] = subscribtions ;
 
   getById(id: number) {  
-    return this.events.find(product => product.id === id);
+    return this.subscribtions.find(subscribtion => subscribtion.id === id);
   }
 
-  get byGroup() {
-    return this.events.reduce((group: { [key: string]: IEvent[] }, event) => {
-      if (!group[event.category]) {
-        group[event.category] = [];
-      }
-      group[event.category].push(event);
-      return group;
-    }, {});
+  getSubscribtions(){
+    return this.subscribtions;
   }
+
+  // get byGroup() {
+  //   return this.events.reduce((group: { [key: string]: IEvent[] }, event) => {
+  //     if (!group[event.category]) {
+  //       group[event.category] = [];
+  //     }
+  //     group[event.category].push(event);
+  //     return group;
+  //   }, {});
+  // }
 
 
 }

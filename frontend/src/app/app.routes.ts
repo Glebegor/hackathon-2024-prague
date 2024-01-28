@@ -4,5 +4,5 @@ import { EventsComponent } from './pages/events/events.component';
 
 export const routes: Routes = [
     {path: '',component: EventsComponent, pathMatch:'full'},
-    {path: 'event/:id',component: EventComponent},
+    {path: 'channel/:id',component: EventComponent},
 ];
