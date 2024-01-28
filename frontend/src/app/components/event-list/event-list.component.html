@@ -1,14 +1,24 @@
 <ul class="subscribtions">
-    <li *ngFor="let subscribtion of subscribtions" class="subscribtion-item" [routerLink]="'/channel/' + subscribtion.id">
-      <div class="subscribtion-image">
+    <li *ngFor="let subscribtion of filteredSubscriptions$ | async" class="subscribtion-item" [routerLink]="'/channel/' + subscribtion.id">
+    <div class="subscribtion-image">
         <img [src]="subscribtion.image" [alt]="subscribtion.name">
       </div>
       <div class="subscribtion-info">
-        <p class="subscribtion-title">{{ subscribtion.name }}</p>
-        <p class="hint" *ngIf="subscribtion.description && subscribtion.description.length > 30">
-          {{ subscribtion.link.slice(0, 20) + '...' }}
+        <p class="subscribtion-title">{{"@" + subscribtion.name }}</p>
+        <!-- Перебрать стринг тєги -->
+        <p class="hint">
+          <ng-container *ngFor="let tag of subscribtion.tags.split(',').slice(0, 4); let i = index">
+            <ng-container *ngIf="tag.trim().length <= 10">
+              {{ i >= 0 ? ' #' : '' }}{{ tag.trim() }}
+            </ng-container>
+            <ng-container *ngIf="tag.trim().length >= 10 && subscribtion.tags.split(',').slice(i + 1)[0]">
+              {{ i >= 0 ? ' #' : '' }}{{ subscribtion.tags.split(',').slice(i + 1)[0].trim() }}
+            </ng-container>
+          </ng-container>
         </p>
-        <p class="price">{{subscribtion.price}}</p>      
+        <p class="price">
+          <img class="TON" src="assets/icons/ton_symbol.png" alt="TON Symbol">
+        {{subscribtion.price}}</p>      
       </div>
     </li>
 </ul>

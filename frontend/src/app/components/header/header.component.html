@@ -1,11 +1,12 @@
 <mat-toolbar>
   <form class="example-form">
-    <input class="input" name="text" placeholder="Search..." type="search">
+    <input class="input" name="text" placeholder="Search..." type="search" (input)="onInputChange($event)">
   </form>
 
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
+    <mat-icon>
+      <img src="../../assets/icons/favicon.ico" alt="menu">
+    </mat-icon>
   </button>
 </mat-toolbar>
-

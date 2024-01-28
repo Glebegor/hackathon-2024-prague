@@ -82,6 +82,7 @@ hr {
 }
 
 .subscribtion-item {
+  display:block;
   overflow: hidden;
   box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -94,7 +95,7 @@ hr {
   display: flex;
   height: 100px;
   justify-content: center;
-  background: var(--tg-theme-secondary-bg-color);
+  background: var(--tg-theme-bg-color);
   text-align: center;
   padding-top: 5px;
 }
@@ -115,6 +116,7 @@ hr {
 
 .subscribtion-info {
   padding: var(--main-padding);
+  align-self: flex-end; /* Выравнивание внизу */
 }
 
 .subscribtion-info > p {
@@ -125,7 +127,7 @@ hr {
   padding-right: 10px;
   font-weight: 600;
   text-align: right;
-  bottom: 0;
+  align-self: flex-end;
 }
 
 
