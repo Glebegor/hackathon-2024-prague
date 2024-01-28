@@ -14,21 +14,19 @@ import (
 type subRepository struct {
 	database   *sqlx.DB
 	collection string
-	SubTable   string
-	SubUser    string
+	Table      string
 }
 
 func NewSubRepository(db *sqlx.DB, collection string) domain.SubRepository {
 	return &subRepository{
 		database:   db,
 		collection: collection,
-		SubTable:   "sub",
-		SubUser:    "sub_users",
+		Table:      "sub",
 	}
 }
 
 func (tr *subRepository) Create(c context.Context, sub *domain.Sub) error {
-	query := fmt.Sprintf("INSERT INTO %s (channel_id, price, name, description, user_id, link, images, tags, wallet) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)", tr.SubTable)
+	query := fmt.Sprintf("INSERT INTO %s (channel_id, price, name, description, user_id, link, images, tags, wallet) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)", tr.Table)
 	_, err := tr.database.Exec(query, sub.ChannelId, sub.Price, sub.Name, sub.Description, sub.UserId, sub.Link, sub.Images, sub.Tags, sub.Wallet)
 	if err != nil {
 		return err
@@ -36,7 +34,7 @@ func (tr *subRepository) Create(c context.Context, sub *domain.Sub) error {
 	return nil
 }
 func (tr *subRepository) Delete(c context.Context, subId int, userId int) error {
-	query := fmt.Sprintf("DELETE FROM %s WHERE channel_id=$1 AND user_id=$2", tr.SubTable)
+	query := fmt.Sprintf("DELETE FROM %s WHERE channel_id=$1 AND user_id=$2", tr.Table)
 	_, err := tr.database.Exec(query, subId, userId)
 	if err != nil {
 		return err
@@ -78,21 +76,21 @@ func (tr *subRepository) Update(c context.Context, subId int, sub *domain.Update
 		argId++
 	}
 	setQuery := strings.Join(setValues, ", ")
-	query := fmt.Sprintf("UPDATE %s SET %s WHERE channel_id=%d", tr.SubTable, setQuery, subId)
+	query := fmt.Sprintf("UPDATE %s SET %s WHERE channel_id=%d", tr.Table, setQuery, subId)
 	fmt.Print(query)
 	_, err := tr.database.Exec(query)
 	return err
 }
 func (tr *subRepository) GetById(c context.Context, subId int) (domain.Sub, error) {
 	var data domain.Sub
-	query := fmt.Sprintf("SELECT * FROM %s WHERE channel_id=$1", tr.SubTable)
-	err := tr.database.QueryRow(query, subId).Scan(&data.ChannelId, &data.Name, &data.Price, &data.Description, &data.UserId, &data.Link, &data.Images, &data.Tags)
+	query := fmt.Sprintf("SELECT * FROM %s WHERE channel_id=$1", tr.Table)
+	err := tr.database.QueryRow(query, subId).Scan(&data.ChannelId, &data.Name, &data.Price, &data.Description, &data.UserId, &data.Link, &data.Images, &data.Tags, &data.Wallet)
 	return data, err
 }
 func (tr *subRepository) GetAll(c context.Context) ([]domain.Sub, error) {
 	var data []domain.Sub
 
-	query := fmt.Sprintf("SELECT * from %s", tr.SubTable)
+	query := fmt.Sprintf("SELECT * from %s", tr.Table)
 	rows, err := tr.database.Query(query)
 	if err != nil {
 		return data, err
@@ -101,7 +99,7 @@ func (tr *subRepository) GetAll(c context.Context) ([]domain.Sub, error) {
 
 	for rows.Next() {
 		var dataEl domain.Sub
-		err := rows.Scan(&dataEl.ChannelId, &dataEl.Name, &dataEl.Price, &dataEl.Description, &dataEl.UserId, &dataEl.Link, &dataEl.Images, &dataEl.Tags)
+		err := rows.Scan(&dataEl.ChannelId, &dataEl.Name, &dataEl.Price, &dataEl.Description, &dataEl.UserId, &dataEl.Link, &dataEl.Images, &dataEl.Tags, &dataEl.Wallet)
 		if err != nil {
 			return data, err
 		}

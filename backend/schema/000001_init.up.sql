@@ -11,7 +11,7 @@ CREATE TABLE sub (
 );
 
 CREATE TABLE sub_users (
-	channel_id INT PRIMARY KEY,
+	channel_id INT NOT NULL,
 	user_id INT NOT NULL,
-	endtime VARCHAR(255)
+	endtime VARCHAR(255) NOT NULL
 );
